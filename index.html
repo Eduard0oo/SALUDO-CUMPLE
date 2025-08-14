@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saludo para Katherine</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #ff4d6d, #ffb6c1);
+            animation: backgroundShift 10s infinite alternate linear;
+            color: white;
+        }
+
+        @keyframes backgroundShift {
+            0% { background: linear-gradient(135deg, #ff4d6d, #ffb6c1); }
+            50% { background: linear-gradient(135deg, #ffb6c1, #ff4d6d); }
+            100% { background: linear-gradient(135deg, #ff4d6d, #ffb6c1); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 2;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            line-height: 1.5em;
+        }
+
+        video {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 24px;
+            cursor: pointer;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-200px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Feliz cumple Katherine🥳!</h1>
+        <p>
+        Espero que hoy sea un día lleno de sonrisas, buenos momentos y personas que te aprecian. Sé que no eres fan de tu cumple, pero igual espero que hoy pase algo bonito que te saque una sonrisa. Felices 18 añitos!!<3
+        </p>
+
+        <video controls>
+            <source src="video-katherine.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos.
+        </video>
+    </div>
+
+    <script>
+        const emojis = ['🎉','🎂','🎁','✨','🎈']; // todos menos la estrella
+        const coloresEstrella = ['#FFD700', '#FF4500', '#FF69B4', '#ADFF2F', '#00BFFF', '#FF8C00'];
+
+        function crearEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+
+            const seleccionado = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.innerText = seleccionado;
+
+            emoji.style.left = Math.random() * window.innerWidth + 'px';
+            emoji.style.fontSize = (20 + Math.random() * 30) + 'px';
+            emoji.style.animationDuration = (1 + Math.random() * 1.5) + 's';
+
+            emoji.addEventListener('mouseover', () => {
+                emoji.style.transform = 'scale(1.5)';
+            });
+            emoji.addEventListener('mouseout', () => {
+                emoji.style.transform = 'scale(1)';
+            });
+
+            document.body.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 3000);
+        }
+
+        // Crear emojis cada 0.2 segundos
+        setInterval(crearEmoji, 200);
+
+        // Función para crear estrellas
+        function crearEstrella() {
+            const estrella = document.createElement('div');
+            estrella.classList.add('emoji');
+            estrella.innerText = '★';
+            estrella.style.color = coloresEstrella[Math.floor(Math.random() * coloresEstrella.length)];
+            estrella.style.left = Math.random() * window.innerWidth + 'px';
+            estrella.style.fontSize = (20 + Math.random() * 30) + 'px';
+            estrella.style.animationDuration = (1 + Math.random() * 1.5) + 's';
+
+            estrella.addEventListener('mouseover', () => {
+                estrella.style.transform = 'scale(1.5)';
+            });
+            estrella.addEventListener('mouseout', () => {
+                estrella.style.transform = 'scale(1)';
+            });
+
+            document.body.appendChild(estrella);
+            setTimeout(() => estrella.remove(), 3000);
+        }
+
+        // Crear estrellas cada 0.05 segundos
+        setInterval(crearEstrella, 50);
+    </script>
+</body>
+</html>
